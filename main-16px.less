@@ -1,0 +1,372 @@
+/*	Less Framework 4 with 16/24 type presets
+	http://lessframework.com
+	by Joni Korpi
+	License: http://opensource.org/licenses/mit-license.php	*/
+
+/*	Resets
+	------	*/
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, 
+p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, 
+img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, hr, 
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend, 
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figure, figcaption, hgroup, 
+menu, footer, header, nav, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+article, aside, canvas, figure, figure img, figcaption, hgroup,
+footer, header, nav, section, audio, video {
+	display: block;
+}
+
+a img {border: 0;}
+
+/* Selection colours (easy to forget) */
+
+::selection 	 	{background: rgb(255,255,158);}
+::-moz-selection 	{background: rgb(255,255,158);}
+img::selection 		{background: transparent;}
+img::-moz-selection	{background: transparent;}
+body {-webkit-tap-highlight-color: rgb(255,255,158);}
+
+
+//
+// Configuration
+//	Frameless			<http://framelessgrid.com/>
+//	by Joni Korpi 		<http://jonikorpi.com/>
+//
+
+@font-size: 16; 		// Base font-size in pixels
+@em: @font-size*1em;	// Shorthand for outputting ems, e.g. "12/@em"
+
+@column: 48;	// The column-width of grid in pixels
+@gutter: 24;	// The gutter-width of grid in pixels
+
+@gutter-w: 24/@em;
+@hlf-gutter: @gutter-w/2;
+
+//
+// Column-widths in variables, in ems
+//
+
+ @1cols: ( 1 * (@column + @gutter) - @gutter) / @em; @1col: @1cols;
+ @2cols: ( 2 * (@column + @gutter) - @gutter) / @em;
+ @3cols: ( 3 * (@column + @gutter) - @gutter) / @em;
+ @4cols: ( 4 * (@column + @gutter) - @gutter) / @em;
+ @5cols: ( 5 * (@column + @gutter) - @gutter) / @em;
+ @6cols: ( 6 * (@column + @gutter) - @gutter) / @em;
+ @7cols: ( 7 * (@column + @gutter) - @gutter) / @em;
+ @8cols: ( 8 * (@column + @gutter) - @gutter) / @em;
+ @9cols: ( 9 * (@column + @gutter) - @gutter) / @em;
+@10cols: (10 * (@column + @gutter) - @gutter) / @em;
+@11cols: (11 * (@column + @gutter) - @gutter) / @em;
+@12cols: (12 * (@column + @gutter) - @gutter) / @em;
+@13cols: (13 * (@column + @gutter) - @gutter) / @em;
+@14cols: (14 * (@column + @gutter) - @gutter) / @em;
+@15cols: (15 * (@column + @gutter) - @gutter) / @em;
+@16cols: (16 * (@column + @gutter) - @gutter) / @em;
+
+
+//
+// Column-widths in a function, in ems
+//
+
+.width (@cols:1) {
+	width: (@cols * (@column + @gutter) - @gutter) / @em;
+}
+
+/*		Default Layout: 992px. 
+		Gutters: 24px.
+		Outer margins: 48px.
+		Leftover space for scrollbars @1024px: 32px.
+-------------------------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8      9      10
+px      68    160    252    344    436    528    620    712    804    896    */
+
+body {
+	width: 896px;
+	padding: @2cols 48px 84px;
+	color: rgb(60,60,60);
+	-webkit-text-size-adjust: 100%; /* Stops Mobile Safari from auto-adjusting font-sizes */
+    .post {
+        width: @8cols;
+        .transition(0.2s);
+    }
+    header.text {
+        position: fixed;
+        top: @gutter-w;
+    }
+    header.nav {
+        height: 100%;
+        width: @2cols;
+        @img-width: @2cols - @gutter-w;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        a.logo  {
+            display: block;
+            width: @img-width;
+            margin:  @gutter-w
+                    0
+                    0
+                    @gutter-w;
+            img {
+                width: 100%;
+                .rounded(0.2em);
+            }
+        }
+        ul {
+            width: @2cols;
+            height: @2cols;
+            float:left;
+            display: block;
+            clear:both;
+            //display: inline-block;
+            
+            span.divider {
+                width: @2cols - @hlf-gutter;
+                position: absolute;
+                top: @hlf-gutter;
+                left: @hlf-gutter*1.5;
+            }
+        }
+        .menu-toggle {
+            left: 50%;
+            color: @accent;
+            top: @1cols + @gutter-w;
+            position: absolute;
+            .opacity(0);
+            .transition(0.2s);
+        }
+    }
+}
+
+
+
+/*		Tablet Layout: 768px.
+		Gutters: 24px.
+		Outer margins: 28px.
+		Inherits styles from: Default Layout.
+-----------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8
+px      68    160    252    344    436    528    620    712    */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	
+    html {
+        padding-left: 300px;
+    }
+    
+	body {
+		width: 712px;
+		padding: @2cols 28px 60px;
+        header.text {
+            position: fixed;
+            top: @gutter-w;
+        }
+        header.nav {
+            height: 100%;
+            @img-width: @2cols - @gutter-w;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            .logo {
+               width: @img-width;
+               margin: @gutter-w 0 0 @gutter-w;
+               .rounded(0.2em);
+            }
+            ul {
+                width: @2cols;
+            }
+        }
+    }
+}
+
+
+
+/*		Mobile Layout: 320px.
+		Gutters: 24px.
+		Outer margins: 34px.
+		Inherits styles from: Default Layout.
+---------------------------------------------
+cols    1     2      3
+px      68    160    252    */
+
+@media only screen and (max-width: 767px) {
+    html {
+        padding: 0 !important;
+    }
+	
+	body {
+		width: 100%; //@4cols + (@gutter-w * 1.5);
+        color: rgb(60,60,60);
+        padding: @2cols @hlf-gutter @hlf-gutter;
+        -webkit-text-size-adjust: 100%; /* Stops Mobile Safari from auto-adjusting font-sizes */
+        .post {
+            width: 92%; //@4cols + (@gutter-w * 1.25);
+            text-align: justify;
+        }
+        header.text {
+            z-index: 3;
+            width: 92%; //@4cols + (@gutter-w * 1.25);
+            text-align: center;
+            margin: (@gutter-w * 1.75) 0 0 0;
+            padding: 0;
+            h1 {
+                font-size: 1.125em;
+            }
+            &.below {
+                z-index: -1;
+            }
+        }
+        header.nav {
+            z-index: 2;
+            height: @1cols + (@gutter-w * 1.5);
+            width: 92%; //@4cols + (@gutter-w * 1.25);
+            margin: 0 (@hlf-gutter * 0.5);
+            padding: 0 (@hlf-gutter * 0.5);
+            background-color: @bg-blue; 
+            @img-width: @1col - (@gutter-w * .25);
+            .transition(0.2s);
+            a.logo  {
+                float: left;
+                display: block;
+                width: @img-width;
+                margin: @hlf-gutter
+                        0
+                        0
+                        0;
+                img {
+                    width: 100%;
+                    .rounded(0.2em);
+                }
+            }
+            &.retractable {
+                top: -@gutter-w * 0.75;
+                height: @1cols + (@gutter-w * 1.75);
+                padding-top: @gutter-w * 0.75;
+                background-color: fade(@dark-gray, 90%);
+                .border-radius(0, 0, 0.4em, 0.4em); 
+                .multi-inner-shadow(
+                    inset 0 0 0 @dark-brown,
+                    inset 0  -1px 3px @dark-brown, 
+                    inset 1px 0 3px @dark-brown, 
+                    inset -1px 0 3px @dark-brown
+                );
+                & > a.logo,
+                & > ul {
+                    .opacity(1);
+                    .transition(0.1s, ease-in);
+                }
+                &.closed {
+                    height: @gutter-w;
+                    & > a.logo,
+                    & > ul {
+                        height: 0;
+                        .opacity(0);
+                    }
+                    .menu-toggle {
+                        top: (@gutter-w);
+                    }
+                }
+                .menu-toggle {
+                    top: @1cols + (@gutter-w * 1.75);
+                    z-index: 100;
+                    .opacity(1);
+                }
+            }
+            ul {
+                float:left;
+                width: @1cols;
+                height: auto;
+                display: block;
+                clear: none;
+                span.divider {
+                    display: none;
+                }
+                li {
+                    margin: 0;
+                }
+            }
+        }
+        .articles {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            header {
+                h1 {
+                    font-size: 0.875em;
+                    line-height: 1.125em;
+                    white-space: normal;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    span.sub-head {
+                        margin: 0;
+                        width: 100%;
+                        float:right;
+                    }
+                }
+            }
+            section.content {
+                font-size: 0.875em;
+                p {
+                    line-height: 1.25em;
+                }
+            }
+        }
+        footer.main {
+            display: inline-block;
+            float: none;
+            margin: @gutter-w 0 0 @1col - @gutter-w;
+        }
+    }
+}
+
+
+
+/*		Wide Mobile Layout: 480px.
+		Gutters: 24px.
+		Outer margins: 22px.
+		Inherits styles from: Default Layout, Mobile Layout.
+------------------------------------------------------------
+cols    1     2      3      4      5
+px      68    160    252    344    436    */
+
+@media only screen and (min-width: 460px) and (max-width: 767px) {
+	
+	body {
+		width: 100%; //@6cols + (@hlf-gutter);
+        padding: @2cols @hlf-gutter @hlf-gutter;
+        .post {
+            width: 92%; //@6cols + (@hlf-gutter);
+        }
+        header.text {
+            width: 92%; //@6cols + (@hlf-gutter);
+        }
+        header.nav {
+            width: 92%; //@6cols + (@hlf-gutter);
+        }
+    }
+}
+
+
+/*	Retina media query.
+	Overrides styles for devices with a 
+	device-pixel-ratio of 2+, such as iPhone 4.
+-----------------------------------------------    */
+
+@media 
+	only screen and (-webkit-min-device-pixel-ratio: 2),
+	only screen and (min-device-pixel-ratio: 2) {
+	
+	body {
+	
+	}
+	
+}

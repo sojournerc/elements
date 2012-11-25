@@ -11,65 +11,75 @@
     More info at: http://lesselements.com
 -----------------------------------------------------*/
 
-.gradient(@color: #F5F5F5, @start: #EEE, @stop: #FFF) {
-  background: @color;
-  background: -webkit-gradient(linear,
-                               left bottom,
-                               left top,
-                               color-stop(0, @start),
-                               color-stop(1, @stop));
-  background: -ms-linear-gradient(bottom,
-                                  @start,
-                                  @stop);
-  background: -moz-linear-gradient(center bottom,
-                                   @start 0%,
-                                   @stop 100%);
+.vertical-gradient(@endColor: rgba(0, 0, 0, 0.2), @startColor: rgba(0, 0, 0, 0.0)) {
+    background: @endColor;
+    background: -webkit-gradient(linear,
+                                left bottom,
+                                left top,
+                                color-stop(0, @startColor),
+                                color-stop(1, @endColor));
+    background: -ms-linear-gradient(bottom,
+                                @startColor,
+                                @endColor);
+    background: -moz-linear-gradient(center bottom,
+                                    @startColor 0%,
+                                    @endColor 100%);
 }
-.bw-gradient(@color: #F5F5F5, @start: 0, @stop: 255) {
-  background: @color;
-  background: -webkit-gradient(linear,
-                               left bottom,
-                               left top,
-                               color-stop(0, rgb(@start,@start,@start)),
-                               color-stop(1, rgb(@stop,@stop,@stop)));
-  background: -ms-linear-gradient(bottom,
-                                  rgb(@start,@start,@start) 0%,
-                                  rgb(@start,@start,@start) 100%);
-  background: -moz-linear-gradient(center bottom,
-                                   rgb(@start,@start,@start) 0%,
-                                   rgb(@stop,@stop,@stop) 100%);
+.horizontal-gradient (@startColor: rgba(0, 0, 0, 0.2), @endColor: rgba(0, 0, 0, 0.0)) {
+    background-color: @endColor;
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(left, @startColor, @endColor); // FF 3.6+
+    background-image: -ms-linear-gradient(left, @startColor, @endColor); // IE10
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, @startColor), color-stop(100%, @endColor)); // Safari 4+, Chrome 2+
+    background-image: -webkit-linear-gradient(left, @startColor, @endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient(left, @startColor, @endColor); // Opera 11.10
+    background-image: linear-gradient(left, @startColor, @endColor); // Le standard
+}
+.bw-gradient(@color: #F5F5F5, @start: 0, @stop: #000) {
+    background: @color;
+    background: -webkit-gradient(linear,
+                                 left bottom,
+                                 left top,
+                                 color-stop(0, rgb(@start,@start,@start)),
+                                 color-stop(1, rgb(@stop,@stop,@stop)));
+    background: -ms-linear-gradient(bottom,
+                                    rgb(@start,@start,@start) 0%,
+                                    rgb(@start,@start,@start) 100%);
+    background: -moz-linear-gradient(center bottom,
+                                     rgb(@start,@start,@start) 0%,
+                                     rgb(@stop,@stop,@stop) 100%);
 }
 .bordered(@top-color: #EEE, @right-color: #EEE, @bottom-color: #EEE, @left-color: #EEE) {
-  border-top: solid 1px @top-color;
-  border-left: solid 1px @left-color;
-  border-right: solid 1px @right-color;
-  border-bottom: solid 1px @bottom-color;
+    border-top: solid 1px @top-color;
+    border-left: solid 1px @left-color;
+    border-right: solid 1px @right-color;
+    border-bottom: solid 1px @bottom-color;
 }
 .drop-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @alpha: 0.1) {
-  -webkit-box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
-  -moz-box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
-  box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+    -webkit-box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+    -moz-box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+    box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
 }
 .rounded(@radius: 2px) {
-  -webkit-border-radius: @radius;
-  -moz-border-radius: @radius;
-  border-radius: @radius;
-  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; 
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+    -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; 
 }
-.border-radius(@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
-  -webkit-border-top-right-radius: @topright;
-  -webkit-border-bottom-right-radius: @bottomright;
-  -webkit-border-bottom-left-radius: @bottomleft;
-  -webkit-border-top-left-radius: @topleft;
-  -moz-border-radius-topright: @topright;
-  -moz-border-radius-bottomright: @bottomright;
-  -moz-border-radius-bottomleft: @bottomleft;
-  -moz-border-radius-topleft: @topleft;
-  border-top-right-radius: @topright;
-  border-bottom-right-radius: @bottomright;
-  border-bottom-left-radius: @bottomleft;
-  border-top-left-radius: @topleft;
-  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; 
+.border-radius(@topleft: 0, @topright: 0, @bottomright: 0, @bottomleft: 0) {
+    -webkit-border-top-right-radius: @topright;
+    -webkit-border-bottom-right-radius: @bottomright;
+    -webkit-border-bottom-left-radius: @bottomleft;
+    -webkit-border-top-left-radius: @topleft;
+    -moz-border-radius-topright: @topright;
+    -moz-border-radius-bottomright: @bottomright;
+    -moz-border-radius-bottomleft: @bottomleft;
+    -moz-border-radius-topleft: @topleft;
+    border-top-right-radius: @topright;
+    border-bottom-right-radius: @bottomright;
+    border-bottom-left-radius: @bottomleft;
+    border-top-left-radius: @topleft;
+    -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; 
 }
 .opacity(@opacity: 0.5) {
   -moz-opacity: @opacity;
@@ -102,35 +112,69 @@
   -moz-box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
   box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
 }
+.multi-inner-shadow (
+                @string1: inset -1px -5px 5px rgba(159, 161, 161, 1),
+                @string2: inset 1px -5px 5px rgba(159, 161, 161, 1),
+                @string3: inset 0 1px 0 rgba(138, 133, 113, 1),
+                @string4: inset 0 0 0 rgba(159, 161, 161, 0)
+                ) {
+     -webkit-box-shadow: @string1, @string2, @string3, @string4;
+        -moz-box-shadow: @string1, @string2, @string3, @string4;
+             box-shadow: @string1, @string2, @string3, @string4;  
+    
+}
+.360-inner-shadow (@horizontal:1px, @vertical:1px, @blur:2px, @alpha: 0.4) {
+-webkit-box-shadow:     inset @horizontal 0 @blur rgba(0, 0, 0, @alpha),
+                        inset -@horizontal 0 @blur rgba(0, 0, 0, @alpha),
+                        inset 0 @vertical @blur rgba(0, 0, 0, @alpha),
+                        inset 0 -@vertical @blur rgba(0, 0, 0, @alpha);
+  -moz-box-shadow:  inset @horizontal 0 @blur rgba(0, 0, 0, @alpha),
+                    inset -@horizontal 0 @blur rgba(0, 0, 0, @alpha),
+                    inset 0 @vertical @blur rgba(0, 0, 0, @alpha),
+                    inset 0 -@vertical @blur rgba(0, 0, 0, @alpha);
+  box-shadow:   inset @horizontal 0 @blur rgba(0, 0, 0, @alpha),
+                inset -@horizontal 0 @blur rgba(0, 0, 0, @alpha),
+                inset 0 @vertical @blur rgba(0, 0, 0, @alpha),
+                inset 0 -@vertical @blur rgba(0, 0, 0, @alpha);
+}
 .box-shadow(@arguments) {
-  -webkit-box-shadow: @arguments;
-  -moz-box-shadow: @arguments;
-  box-shadow: @arguments;
+    -webkit-box-shadow: @arguments;
+    -moz-box-shadow: @arguments;
+    box-shadow: @arguments;
 }
 .columns(@colwidth: 250px, @colcount: 0, @colgap: 50px, @columnRuleColor: #EEE, @columnRuleStyle: solid, @columnRuleWidth: 1px) {
-  -moz-column-width: @colwidth;
-  -moz-column-count: @colcount;
-  -moz-column-gap: @colgap;
-  -moz-column-rule-color: @columnRuleColor;
-  -moz-column-rule-style: @columnRuleStyle;
-  -moz-column-rule-width: @columnRuleWidth;
-  -webkit-column-width: @colwidth;
-  -webkit-column-count: @colcount;
-  -webkit-column-gap: @colgap;
-  -webkit-column-rule-color: @columnRuleColor;
-  -webkit-column-rule-style: @columnRuleStyle;
-  -webkit-column-rule-width: @columnRuleWidth;
-  column-width: @colwidth;
-  column-count: @colcount;
-  column-gap: @colgap;
-  column-rule-color: @columnRuleColor;
-  column-rule-style: @columnRuleStyle;
-  column-rule-width: @columnRuleWidth;
+    -moz-column-width: @colwidth;
+    -moz-column-count: @colcount;
+    -moz-column-gap: @colgap;
+    -moz-column-rule-color: @columnRuleColor;
+    -moz-column-rule-style: @columnRuleStyle;
+    -moz-column-rule-width: @columnRuleWidth;
+    -webkit-column-width: @colwidth;
+    -webkit-column-count: @colcount;
+    -webkit-column-gap: @colgap;
+    -webkit-column-rule-color: @columnRuleColor;
+    -webkit-column-rule-style: @columnRuleStyle;
+    -webkit-column-rule-width: @columnRuleWidth;
+    column-width: @colwidth;
+    column-count: @colcount;
+    column-gap: @colgap;
+    column-rule-color: @columnRuleColor;
+    column-rule-style: @columnRuleStyle;
+    column-rule-width: @columnRuleWidth;
 }
 .translate(@x:0, @y:0) {
-  -moz-transform: translate(@x, @y);
-  -webkit-transform: translate(@x, @y);
-  -o-transform: translate(@x, @y);
-  -ms-transform: translate(@x, @y);
-  transform: translate(@x, @y);
+    -moz-transform: translate(@x, @y);
+    -webkit-transform: translate(@x, @y);
+    -o-transform: translate(@x, @y);
+    -ms-transform: translate(@x, @y);
+    transform: translate(@x, @y);
+}
+.text-shadow (@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
+	text-shadow: @string;
+}
+.360-text-shadow (@horizontal: 1px, @vertical: 1px, @blur: 1px, @color: rgba(0, 0, 0, 0.25)) { 
+    text-shadow:    @horizontal 0 @blur @color,
+                    -@horizontal 0 @blur @color,
+                    0 @vertical @blur @color,
+                    0 -@vertical @blur @color
 }
