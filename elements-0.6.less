@@ -113,10 +113,10 @@
   box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
 }
 .multi-inner-shadow (
-                @string1: inset -1px -5px 5px rgba(159, 161, 161, 1),
-                @string2: inset 1px -5px 5px rgba(159, 161, 161, 1),
-                @string3: inset 0 1px 0 rgba(138, 133, 113, 1),
-                @string4: inset 0 0 0 rgba(159, 161, 161, 0)
+                @string1: inset -1px -5px 5px fade(@bg-blue, 60%),
+                @string2: inset 1px -5px 5px fade(@bg-blue, 60%),
+                @string3: inset 0 1px 0 fade(@bg-blue, 0),
+                @string4: inset 0 0 0 fade(@bg-blue, 0)
                 ) {
      -webkit-box-shadow: @string1, @string2, @string3, @string4;
         -moz-box-shadow: @string1, @string2, @string3, @string4;
